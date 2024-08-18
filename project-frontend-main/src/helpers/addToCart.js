@@ -10,7 +10,8 @@ const addToCart = async (e, id) => {
             method: SummaryApi.addToCartProduct.method,
             credentials: 'include', // Ensure cookies are sent with the request
             headers: {
-                "Content-Type": 'application/json',
+                "Content-Type": 'application/json'
+                
                 // Add Authorization header if needed, e.g., `Authorization: Bearer YOUR_TOKEN`
             },
             body: JSON.stringify({ productId: id })
