@@ -51,8 +51,7 @@ const SummaryApi = {
     },
     addToCartProduct : {
         url : `${backendDomin}/api/addtocart`,
-        method : 'post',
-        credentials : 'include'
+        method : 'post'
     },
     addToCartProductCount : {
         url : `${backendDomin}/api/countAddToCartProduct`,

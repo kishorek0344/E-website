@@ -1,7 +1,6 @@
 import SummaryApi from "../common";
 import { toast } from 'react-toastify';
 
-const TOKEN_SECRET_KEY="QWESDSDFFGGHTT^GYUAYUHHJDIJOSHUSDY&SUGSBJSSKLNDNBBSKHUHJUSIJLSIJIJIUBHJSDDS"
 
 const addToCart = async (e, id) => {
     e?.stopPropagation();
@@ -13,9 +12,10 @@ const addToCart = async (e, id) => {
             credentials: 'include', // This ensures cookies are sent with the request
             headers: {
                 "Content-Type": 'application/json',
-                "Authorization": `Bearer ${TOKEN_SECRET_KEY}` // Add the token here if required
+                
             },
-            body: JSON.stringify({ productId: id })
+            body: JSON.stringify({ productId: id }),
+            credentials: 'include' 
         });
 
         if (!response.ok) {
