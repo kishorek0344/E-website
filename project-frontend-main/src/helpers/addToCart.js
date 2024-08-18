@@ -1,6 +1,7 @@
 import SummaryApi from "../common";
 import { toast } from 'react-toastify';
 
+
 const addToCart = async (e, id) => {
     e?.stopPropagation();
     e?.preventDefault();
@@ -8,11 +9,10 @@ const addToCart = async (e, id) => {
     try {
         const response = await fetch(SummaryApi.addToCartProduct.url, {
             method: SummaryApi.addToCartProduct.method,
-            credentials: 'include', // Ensure cookies are sent with the request
+            credentials: 'include', // This ensures cookies are sent with the request
             headers: {
-                "Content-Type": 'application/json'
-                
-                // Add Authorization header if needed, e.g., `Authorization: Bearer YOUR_TOKEN`
+                "Content-Type": 'application/json',
+                "Authorization": `Bearer ${token}` // Add the token here if required
             },
             body: JSON.stringify({ productId: id })
         });
@@ -36,5 +36,6 @@ const addToCart = async (e, id) => {
         toast.error('An error occurred while adding to cart.');
     }
 };
+
 
 export default addToCart;
