@@ -1,3 +1,4 @@
+import authToken from "../../../project-backend-main/middleware/authToken"
 import SummaryApi from "../common"
 import { toast } from 'react-toastify'
 
@@ -15,6 +16,7 @@ const addToCart = async (e, id) => {
             { productId: id }
         )
     })
+    console.log(credentials)
 
     const responseData = await response.json()
 
