@@ -1,3 +1,4 @@
+import authToken from "../../../project-backend-main/middleware/authToken";
 import SummaryApi from "../common";
 import { toast } from 'react-toastify';
 
@@ -12,7 +13,7 @@ const addToCart = async (e, id) => {
             credentials: 'include', // This ensures cookies are sent with the request
             headers: {
                 "Content-Type": 'application/json',
-                "Authorization": `Bearer ${token}` // Add the token here if required
+                "Authorization": `Bearer ${authToken}` // Add the token here if required
             },
             body: JSON.stringify({ productId: id })
         });
