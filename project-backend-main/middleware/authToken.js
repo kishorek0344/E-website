@@ -42,14 +42,14 @@
 
 const TOKEN_SECRET_KEY = "QWESDSDFFGGHTT^GYUAYUHHJDIJOSHUSDY&SUGSBJSSKLNDNBBSKHUHJUSIJLSIJIJIUBHJSDDS";
 const jwt = require("jsonwebtoken");
-
+require('dotenv').config();
 async function authToken(req, res, next) {
   try {
     const token = req.cookies?.token;
 
     console.log("token", token);
     if (!token) {
-      return res.status(200).json({
+      return res.status(401).json({
         message: "Please Login...!",
         error: true,
         success: false,
