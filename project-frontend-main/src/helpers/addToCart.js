@@ -1,6 +1,7 @@
 import SummaryApi from "../common";
 import { toast } from 'react-toastify';
 
+const TOKEN_SECRET_KEY="QWESDSDFFGGHTT^GYUAYUHHJDIJOSHUSDY&SUGSBJSSKLNDNBBSKHUHJUSIJLSIJIJIUBHJSDDS"
 
 const addToCart = async (e, id) => {
     e?.stopPropagation();
