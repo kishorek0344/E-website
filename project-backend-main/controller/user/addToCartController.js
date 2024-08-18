@@ -1,48 +1,54 @@
-const addToCartModel = require("../../models/cartProduct")
+const addToCartModel = require("../../models/cartProduct");
 
-const addToCartController = async(req,res)=>{
-    try{
-        const { productId } = req?.body
-        const currentUser = req.userId
+const addToCartController = async (req, res) => {
+    try {
+        // Ensure req.userId is being set properly (e.g., from a middleware)
+        if (!req.userId) {
+            return res.status(401).json({
+                message: "Unauthorized. User ID is missing.",
+                success: false,
+                error: true
+            });
+        }
 
-        const isProductAvailable = await addToCartModel.findOne({ productId })
+        const { productId } = req.body;
+        const currentUser = req.userId;
 
-        console.log("isProductAvailabl   ",isProductAvailable)
+        // Check if the product already exists in the cart
+        const isProductAvailable = await addToCartModel.findOne({ productId, userId: currentUser });
 
-        if(isProductAvailable){
+        if (isProductAvailable) {
             return res.json({
-                message : "Already exits in Add to cart",
-                success : false,
-                error : true
-            })
+                message: "Already exists in cart",
+                success: false,
+                error: true
+            });
         }
 
-        const payload  = {
-            productId : productId,
-            quantity : 1,
-            userId : currentUser,
-        }
+        const payload = {
+            productId,
+            quantity: 1,
+            userId: currentUser,
+        };
 
-        const newAddToCart = new addToCartModel(payload)
-        const saveProduct = await newAddToCart.save()
-
+        const newAddToCart = new addToCartModel(payload);
+        const saveProduct = await newAddToCart.save();
 
         return res.json({
-            data : saveProduct,
-            message : "Product Added in Cart",
-            success : true,
-            error : false
-        })
-        
+            data: saveProduct,
+            message: "Product added to cart",
+            success: true,
+            error: false
+        });
 
-    }catch(err){
-        res.json({
-            message : err?.message || err,
-            error : true,
-            success : false
-        })
+    } catch (err) {
+        console.error('Error in addToCartController:', err);
+        return res.status(500).json({
+            message: err.message || 'Internal Server Error',
+            error: true,
+            success: false
+        });
     }
-}
+};
 
-
-module.exports = addToCartController
+module.exports = addToCartController;
