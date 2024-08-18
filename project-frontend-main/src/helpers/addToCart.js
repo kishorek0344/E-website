@@ -12,7 +12,7 @@ const addToCart = async (e, id) => {
             credentials: 'include', // This ensures cookies are sent with the request
             headers: {
                 "Content-Type": 'application/json',
-                'Authorization': `Bearer ${"QWESDSDFFGGHTT^GYUAYUHHJDIJOSHUSDY&SUGSBJSSKLNDNBBSKHUHJUSIJLSIJIJIUBHJSDDS"}`
+                'Authorization': 'Bearer ${"QWESDSDFFGGHTT^GYUAYUHHJDIJOSHUSDY&SUGSBJSSKLNDNBBSKHUHJUSIJLSIJIJIUBHJSDDS"}'
                 
             },
             body: JSON.stringify({ productId: id }),
